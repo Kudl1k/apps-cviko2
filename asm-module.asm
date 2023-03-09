@@ -11,21 +11,65 @@
 
     section .data
 
-    ; variables
-
-    ;global g_some_asm_var
-    ;extern g_some_c_var
-
-;g_some_asm_var dd ?
+    extern longArr
+    extern intArr
+    extern g_N
+    extern myString
+    extern g_xor
 
 ;***************************************************************************
 
     section .text
 
-    ; functions
+    global bitDivision
 
-    ;global some_asm_function
-    ;extern some_c_function
+    global stringxor
 
-;some_asm_function:
-    ;ret
+    global getEven
+getEven:
+    mov rdx , 0
+.back:
+    cmp rdx , 10 
+    je .end_for 
+    mov rbx , [ longArr + rdx * 8 ]
+    and rbx , 1
+    jz .even
+    inc rdx
+    jmp .back
+.even:
+    mov rcx, [ longArr + rdx * 8]
+    neg rcx
+    mov [ longArr + rdx * 8], rcx
+    inc rdx
+    jmp .back
+.end_for:
+    ret
+
+
+bitDivision:
+    mov rdx, 0
+.zpet:
+    cmp rdx, 10
+    je .hotovo
+    mov cl, [ g_N ]
+    mov ebx, [intArr + rdx * 4]
+    shr ebx, cl
+    mov [intArr + rdx * 4], ebx
+    inc rdx
+    jmp .zpet
+.hotovo:
+    ret
+
+stringxor:
+    mov rdx, 0
+.zpet:
+    cmp [myString + rdx], byte 0
+    je .konec
+    mov al, [ g_xor ]
+    xor [myString + rdx], al
+    inc rdx
+    jmp .zpet
+.konec:
+    ret
+
+
