@@ -13,7 +13,7 @@ long longArr[10] = {1,2,3,4,5,6,7,8,9,10};
 
 void getEven();
 
-int intArr[10] = {1,2,3,4,5,6,7,8,9,10};
+int intArr[10] = {1,2,3,-4,5,-6,7,8,9,10};
 char g_N = 1;
 
 
@@ -50,7 +50,7 @@ int main()
 
     stringxor();
 
-    printf("%s",myString);
+    printf("%s\n\n\n",myString);
     
 
 }
