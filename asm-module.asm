@@ -53,7 +53,7 @@ bitDivision:
     je .hotovo
     mov cl, [ g_N ]
     mov ebx, [intArr + rdx * 4]
-    shr ebx, cl
+    sar ebx, cl
     mov [intArr + rdx * 4], ebx
     inc rdx
     jmp .zpet
